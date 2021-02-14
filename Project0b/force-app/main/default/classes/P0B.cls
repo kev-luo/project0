@@ -81,8 +81,26 @@ public inherited sharing class P0B {
      * Input: [1,2,3,4,5], 3    Output: [4,5,1,2,3]
     */
     public static List<Integer> rotateLeftNTimes( List<Integer> nList, Integer n) {
-      List<Integer> integersList = new List<Integer> {1, 2};
-      return integersList;
+      List<Integer> rotatedInts = new List<Integer>();
+
+      if(math.mod(n, nList.size()) == 0) {
+        return nList;
+      }
+      
+      Integer increment = n;
+      if(n > nList.size()) {
+        increment = math.mod(n, nList.size());
+      }
+
+      for (Integer i=increment; i<nList.size(); i++) {
+        rotatedInts.add(nList[i]);
+      }
+      for (Integer i=0; i < increment; i++) {
+        rotatedInts.add(nList[i]);
+      }
+
+      System.debug(rotatedInts);
+      return rotatedInts;
     }
 
     /*
