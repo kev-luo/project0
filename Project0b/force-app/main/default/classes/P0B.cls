@@ -11,13 +11,19 @@ public inherited sharing class P0B {
      * Input: 0     Output: 0
      * Input: 1    Output: 1
      * Input: 2     Output: 1
+     * Input: 3     Output: 2
+     * Input: 4     Output: 3
+     * Input: 5     Output: 5
+     * Input: 6     Output: 8
+     * Input: 7     Output: 13
+     * Input: 8     Output: 21
      * Input: 10    Output: 55
     */
     public static Integer nFibonacci( Integer n ){
-      if(n == 0 || n == 1) {
+      if(n <= 1) {
         return n;
       }
-      
+      return nFibonacci(n-1) + nFibonnaci(n-2);      
     }
 
     /*
