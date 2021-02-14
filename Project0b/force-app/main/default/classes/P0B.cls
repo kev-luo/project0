@@ -61,7 +61,15 @@ public inherited sharing class P0B {
      * Input: 3    Output: 6
     */
     public static Integer nFactorial( Integer n) {
-      return 2;
+      if(n <= 1) {
+        return 1;
+      }
+      Integer factorialNum = 1;
+      for (Integer i = 2; i <= n; i++) {
+        factorialNum *= i;
+      }
+      System.debug(factorialNum);
+      return factorialNum;
     }
 
     /*
