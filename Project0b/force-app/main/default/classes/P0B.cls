@@ -11,19 +11,24 @@ public inherited sharing class P0B {
      * Input: 0     Output: 0
      * Input: 1    Output: 1
      * Input: 2     Output: 1
-     * Input: 3     Output: 2
-     * Input: 4     Output: 3
-     * Input: 5     Output: 5
-     * Input: 6     Output: 8
-     * Input: 7     Output: 13
-     * Input: 8     Output: 21
      * Input: 10    Output: 55
     */
     public static Integer nFibonacci( Integer n ){
       if(n <= 1) {
         return n;
       }
-      return nFibonacci(n-1) + nFibonnaci(n-2);      
+
+      Integer n1 = 0;
+      Integer n2 = 1;
+      Integer n3;
+
+      for(Integer i=2; i <= n; i++) {
+        n3 = n1 + n2;
+        n1 = n2;
+        n2 = n3;
+      }
+      System.debug(n3);
+      return n3;     
     }
 
     /*
@@ -35,7 +40,17 @@ public inherited sharing class P0B {
      * Don't use the sort() method... that would be lame.
     */
     public static List<Integer> sortList( List<Integer> intList ) {
-
+      for (Integer i = 0; i < intList.size(); i++) {
+        for (Integer ii = i+1; ii < intList.size(); ii++) {
+          if(intList[i] > intList[ii]) {
+            Integer temp = intList[i];
+            intList[i] = intList[ii];
+            intList[ii] = temp;
+          }
+        }
+      }
+      System.debug(intList);
+      return intList;
     }
 
     /*
@@ -46,7 +61,7 @@ public inherited sharing class P0B {
      * Input: 3    Output: 6
     */
     public static Integer nFactorial( Integer n) {
-
+      return 2;
     }
 
     /*
@@ -58,7 +73,8 @@ public inherited sharing class P0B {
      * Input: [1,2,3,4,5], 3    Output: [4,5,1,2,3]
     */
     public static List<Integer> rotateLeftNTimes( List<Integer> nList, Integer n) {
-
+      List<Integer> integersList = new List<Integer> {1, 2};
+      return integersList;
     }
 
     /*
@@ -81,7 +97,7 @@ public inherited sharing class P0B {
      * Return false if not balanced
     */
     public static Boolean bracketsAreBalanced( String s ) {
-
+      return true;
     }
 
     /* You should NOT be submitting answers that you find online. You will be expected to be able to defend any of these solutions without notice. */
