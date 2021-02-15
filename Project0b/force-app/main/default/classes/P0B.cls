@@ -123,6 +123,35 @@ public inherited sharing class P0B {
      * Return false if not balanced
     */
     public static Boolean bracketsAreBalanced( String s ) {
+      Map<String, String> bracketRef = new Map<String, String>();
+      bracketRef.put('(', ')');
+      bracketRef.put('[', ']');
+      bracketRef.put('{', '}');
+
+      List<String> openBrackets = new List<String>();
+      for(Integer i = 0; i < s.length(); i++) {
+        if (s.substring(i, i+1) == '(' || s.substring(i, i+1) == '[' || s.substring(i, i+1) == '{') {
+          openBrackets.add(s.substring(i, i+1));
+          continue;
+        }
+
+        if(openBrackets.size() < 1) {
+          System.debug(false);
+          return false;
+        }
+
+        if(s.substring(i, i+1) != bracketRef.get(openBrackets.remove(openBrackets.size() - 1))) {
+          System.debug(false);
+          return false;
+        }
+      }
+
+      if(openBrackets.size() > 0) {
+        System.debug(false);
+        return false;
+      }
+
+      System.debug(true);
       return true;
     }
 
