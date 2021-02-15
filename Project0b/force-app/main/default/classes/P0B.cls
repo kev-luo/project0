@@ -211,6 +211,19 @@ public inherited sharing class P0B {
      * they are not marked as 'Closed Won', they should be marked as 'Closed Lost'.
      */
     public static void closePastDueOpportunities( ) {
+      List<Opportunity> listedOpps = [
+        SELECT Name, StageName, CloseDate
+        FROM Opportunity
+        WHERE CloseDate < TODAY AND StageName != 'Closed Won'
+      ];
 
+      List<Opportunity> updatedOpps = new List<Opportunity>();
+
+      for (Opportunity o: listedOpps) {
+        o.StageName = 'Closed Lost';
+        updatedOpps.add(o);
+      }
+
+      update updatedOpps;
     }
 }
