@@ -168,7 +168,31 @@ public inherited sharing class P0B {
      *     Update the Size__c field on each account to reflect the amount of employees in the Account.
     */
     public static void updateAccountSize( ) {
+      List<Account> acctList = [
+        SELECT Name, NumberOfEmployees
+        FROM Account
+      ];
 
+      List<Account> updatedList = new List<Account>();
+
+      for(Account a: acctList) {
+        if(a.NumberOfEmployees == null) {
+          updatedList.add(a);
+          continue;
+        }
+
+        if(a.NumberOfEmployees <= 1000) {
+          a.Size__c = 'Small';
+        } else if(a.NumberOfEmployees <= 10000) {
+          a.Size__c = 'Medium';
+        } else {
+          a.Size__c = 'Large';
+        }
+
+        updatedList.add(a);
+      }
+
+      update updatedList;
     }
 
     /* 
