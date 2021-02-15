@@ -202,7 +202,23 @@ public inherited sharing class P0B {
      * business in California."
      */
     public static void updateCALeads( ) {
+      List<List<sObject>> leadList = [
+        FIND 'ca' IN ALL FIELDS
+        RETURNING Lead(State, Description, Status)
+      ];
 
+      Lead[] leadListResults = (Lead[])leadList[0];
+      List<Lead> updatedList = new List<Lead>();
+
+      for(Lead l: leadListResults) {
+        if(l.State.toLowerCase() == 'ca') {
+          l.Status = 'Closed - Not Converted';
+          l.Description = 'We are no longer doing business in California';
+          updatedList.add(l);
+        }
+      }
+
+      update updatedList;
     }
 
     /*
